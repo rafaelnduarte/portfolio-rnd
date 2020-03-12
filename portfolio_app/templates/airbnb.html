@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Style -->
+    <style>
+        .masthead {
+            height: 100vh;
+            min-height: 500px;
+            background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <title>Airbnb - NYC</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Rafael Duarte</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Me</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Full Page Image Header with Vertically Centered Content -->
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="font-weight-light">New York City</h1>
+
+                    <p class="lead">Analyzing Airbnb data on the Big Apple</p>
+
+                    <form action="{{ url_for('main') }}" method='POST'>
+
+                        <div class="form-group">
+                            <label>Latitude</label>
+                            <input type="float" class="form-control" id="latitude" name="latitude" aria-placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Longitude</label>
+                            <input type="float" class="form-control" id="longitude" name="longitude"
+                                aria-placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Minimum Nights</label>
+                            <input type="number" class="form-control" id="minimum_nights" name="minimum_nights"
+                                aria-placeholder="">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Available Days In A Year</label>
+                            <input type="number" class="form-control" id="availability_365" name="availability_365"
+                                aria-placeholder="">
+                        </div>
+
+
+                        <p>Borough</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="neigh_group_encoded"
+                                id="neigh_group_encoded" value="0">
+                            <label class="form-check-label">Bronx</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="neigh_group_encoded"
+                                id="neigh_group_encoded" value="1">
+                            <label class="form-check-label">Brooklyn</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="neigh_group_encoded"
+                                id="neigh_group_encoded" value="2">
+                            <label class="form-check-label">Manhattan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="neigh_group_encoded"
+                                id="neigh_group_encoded" value="3">
+                            <label class="form-check-label">Queens</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="neigh_group_encoded"
+                                id="neigh_group_encoded" value="4">
+                            <label class="form-check-label">Staten Island</label>
+                        </div>
+
+                        <p>Room Type</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="room_encoded" id="room_encoded"
+                                value="0">
+                            <label class="form-check-label">Entire Apartment</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="room_encoded" id="room_encoded"
+                                value="1">
+                            <label class="form-check-label">Private Room</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="room_encoded" id="room_encoded"
+                                value="2">
+                            <label class="form-check-label">Shared Room</label>
+                        </div>
+                        
+                    <div class="container">
+                        <button type="submit" class="btn btn-primary">Calculate</button>
+                        </form>
+                        {% if price  %}
+
+                        <hr>
+                        <h2>Listing Price: {{ '$ {0:.2f}'.format(price) }} </h2>
+                        {% endif %}
+
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+</body>
+
+</html>
